@@ -16,7 +16,7 @@ public class DemoApplication {
         Produit p =new Produit("Rio",500.0);
         prodao.save(p);
         Produit pr = prodao.findById(1L).get();
-        System.out.println("my name is "+ pr.getName());
+        System.out.println(pr.toString());
 	}
 
 }
