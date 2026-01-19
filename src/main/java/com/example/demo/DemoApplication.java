@@ -55,6 +55,12 @@ public class DemoApplication {
         catch (NoSuchElementException e){
             System.out.println("Produit avec id 1 n'existe pas.");
         }
+        // count()
+        Long number =prodao.count();
+        System.out.println("Nombre total des produits: "+number);
+        //existsById()
+        boolean exists = prodao.existsById(52L);
+        System.out.println("Produit avec id 52 existe: "+exists);
 
 	}
 
