@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -19,16 +20,42 @@ public class DemoApplication {
         // save()
         Produit p =new Produit("Rio",500.0);
         Produit pp =new Produit("Youssef",50.0);
-        prodao.save(p);
-        prodao.save(pp);
+        //prodao.save(p);
+        //prodao.save(pp);
         // findById()
+        try{
         Produit pr = prodao.findById(1L).get();
-        System.out.println(pr.toString());
+        System.out.println(pr.toString());}
+        catch (NoSuchElementException e){
+            System.out.println("Produit avec id 1 n'existe pas.");
+        }
         // findAll()
         List<Produit> produits = prodao.findAll();
         for (Produit pro : produits){
             System.out.println(pro.toString());
         }
+        // deleteById()
+        try{
+        prodao.deleteById(2L);
+        System.out.println("Produit avec id 2 supprimé.");}
+        catch (NoSuchElementException e){
+            System.out.println("Produit avec id 2 n'existe pas.");
+        }
+
+        // findAll() après suppression
+        List<Produit> produitsAfterDeletion = prodao.findAll();
+        for (Produit pro : produitsAfterDeletion){
+            System.out.println(pro.toString());
+        }
+        //delete()
+        try{
+        Produit produitToDelete = prodao.findById(1L).get();
+        prodao.delete(produitToDelete);
+        System.out.println("Produit avec id 1 supprimé.");}
+        catch (NoSuchElementException e){
+            System.out.println("Produit avec id 1 n'existe pas.");
+        }
+
 	}
 
 }
