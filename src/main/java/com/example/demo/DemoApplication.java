@@ -19,7 +19,7 @@ public class DemoApplication {
         produitDao prodao = ioc.getBean(produitDao.class);
         // save()
         Produit p =new Produit("Rio",500.0,true);
-        Produit pp =new Produit("Youssef",50.0,false);
+        Produit pp =new Produit("Youssef",5000.0,false);
         Produit ppp =new Produit("hamza",50.0,true);
         prodao.save(p);
         prodao.save(pp);
@@ -37,12 +37,12 @@ public class DemoApplication {
             System.out.println(pro.toString());
         }
         // deleteById()
-        try{
-        prodao.deleteById(2L);
-        System.out.println("Produit avec id 2 supprimé.");}
-        catch (NoSuchElementException e){
-            System.out.println("Produit avec id 2 n'existe pas.");
-        }
+//        try{
+//        prodao.deleteById(2L);
+//        System.out.println("Produit avec id 2 supprimé.");}
+//        catch (NoSuchElementException e){
+//            System.out.println("Produit avec id 2 n'existe pas.");
+//        }
 
         // findAll() après suppression
         List<Produit> produitsAfterDeletion = prodao.findAll();
@@ -50,13 +50,13 @@ public class DemoApplication {
             System.out.println(pro.toString());
         }
         //delete()
-        try{
-        Produit produitToDelete = prodao.findById(1L).get();
-        prodao.delete(produitToDelete);
-        System.out.println("Produit avec id 1 supprimé.");}
-        catch (NoSuchElementException e){
-            System.out.println("Produit avec id 1 n'existe pas.");
-        }
+//        try{
+//        Produit produitToDelete = prodao.findById(1L).get();
+//        prodao.delete(produitToDelete);
+//        System.out.println("Produit avec id 1 supprimé.");}
+//        catch (NoSuchElementException e){
+//            System.out.println("Produit avec id 1 n'existe pas.");
+//        }
         // count()
         Long number =prodao.count();
         System.out.println("Nombre total des produits: "+number);
@@ -74,6 +74,12 @@ public class DemoApplication {
         List<Produit> produitsByNameAndDisponible = prodao.findByNameAndDisponible("hamza", true);
         for (Produit pro : produitsByNameAndDisponible) {
             System.out.println(pro.toString());}
+        //findByPriceGreaterThan()
+        System.out.println("Produits avec prix > 100.0:");
+        List<Produit> produitsByPriceGreaterThan = prodao.findByPriceGreaterThan(100.0);
+        for(Produit pro : produitsByPriceGreaterThan){
+            System.out.println(pro.toString());
+        }
 
 
 

@@ -8,4 +8,5 @@ import java.util.List;
 public interface produitDao extends JpaRepository<Produit,Long> {
     List<Produit> findByName(String name);
     List<Produit> findByNameAndDisponible(String nam ,boolean disponible);
+    List<Produit> findByPriceGreaterThan(Double price);
 }
