@@ -18,10 +18,12 @@ public class DemoApplication {
         // Récupérer le bean produitDao depuis le conteneur IoC
         produitDao prodao = ioc.getBean(produitDao.class);
         // save()
-        Produit p =new Produit("Rio",500.0);
-        Produit pp =new Produit("Youssef",50.0);
-        //prodao.save(p);
-        //prodao.save(pp);
+        Produit p =new Produit("Rio",500.0,true);
+        Produit pp =new Produit("Youssef",50.0,false);
+        Produit ppp =new Produit("hamza",50.0,true);
+        prodao.save(p);
+        prodao.save(pp);
+        prodao.save(ppp);
         // findById()
         try{
         Produit pr = prodao.findById(1L).get();
@@ -61,7 +63,20 @@ public class DemoApplication {
         //existsById()
         boolean exists = prodao.existsById(52L);
         System.out.println("Produit avec id 52 existe: "+exists);
+//findByName()
 
-	}
+        List<Produit> produitsByName = prodao.findByName("hamza");
+        for (Produit pro : produitsByName) {
+            System.out.println(pro.toString());
+        }
+        //findByNameAndDisponible()
+
+        List<Produit> produitsByNameAndDisponible = prodao.findByNameAndDisponible("hamza", true);
+        for (Produit pro : produitsByNameAndDisponible) {
+            System.out.println(pro.toString());}
+
+
+
+    }
 
 }

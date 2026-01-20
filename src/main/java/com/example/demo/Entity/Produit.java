@@ -12,13 +12,23 @@ public class Produit {
     private Long id;
     private String name;
     private Double price;
+    private boolean disponible;
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
 
     public Produit() {
     }
 
-    public Produit( String name, Double price) {
+    public Produit( String name, Double price, boolean disponible) {
         this.name = name;
         this.price = price;
+        this.disponible = disponible;
     }
 
     public Long getId() {
@@ -51,6 +61,7 @@ public class Produit {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                '}';
+                ", disponible=" + disponible +
+        '}';
     }
 }
