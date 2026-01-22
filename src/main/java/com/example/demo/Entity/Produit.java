@@ -17,6 +17,7 @@ public class Produit {
     private Double price;
     private boolean disponible;
     private LocalDate date;
+    private String categorie;
     public boolean isDisponible() {
         return disponible;
     }
@@ -29,7 +30,23 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit( String name, Double price, boolean disponible) {
+    public Produit(String name, Double price, boolean disponible, LocalDate date, String categorie) {
+        this.name = name;
+        this.price = price;
+        this.disponible = disponible;
+        this.date = date;
+        this.categorie = categorie;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public Produit(String name, Double price, boolean disponible) {
         this.name = name;
         this.price = price;
         this.disponible = disponible;
@@ -82,6 +99,8 @@ public class Produit {
                 ", price=" + price +
                 ", disponible=" + disponible +
                 ", date=" + date +
+                ", categorie='" + categorie  +
+
         '}';
     }
 }

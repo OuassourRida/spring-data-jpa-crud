@@ -19,12 +19,16 @@ public class DemoApplication {
         // Récupérer le bean produitDao depuis le conteneur IoC
         produitDao prodao = ioc.getBean(produitDao.class);
         // save()
-        Produit p =new Produit("Rio",500.0,true, LocalDate.now());
-        Produit pp =new Produit("Youssef",5000.0,false,LocalDate.of(2023,5,20));
-        Produit ppp =new Produit("hamza",50.0,true,LocalDate.of(2026,1,15));
+        Produit p =new Produit("Rio",500.0,true, LocalDate.now(),"boisson");
+        Produit pp =new Produit("Youssef",5000.0,false,LocalDate.of(2023,5,20),"electronique");
+        Produit ppp =new Produit("hamza",50.0,true,LocalDate.of(2026,1,15),"boisson");
+        Produit pppp =new Produit("imrane",500.0,true,LocalDate.of(2026,1,15),"boisson");
+        Produit ppppp =new Produit("aimad",50.0,true,LocalDate.of(2026,1,15),"electronique");
         prodao.save(p);
         prodao.save(pp);
         prodao.save(ppp);
+        prodao.save(pppp);
+        prodao.save(ppppp);
         // findById()
         try{
         Produit pr = prodao.findById(1L).get();
@@ -93,6 +97,17 @@ public class DemoApplication {
         System.out.println("Produits ajoutés en Janvier 2026:");
         for(Produit pro : produitsQ){
             System.out.println(pro.toString());}
+
+
+        //Average Price By Categorie
+        List<Object[]> avgPrices = prodao.findAveragePriceByCategorie();
+        System.out.println("Prix moyen par catégorie:");
+
+        for(Object[] row : avgPrices){
+            for(Object obj : row){
+                System.out.print(obj + " ");
+            }
+        }
 
 
 

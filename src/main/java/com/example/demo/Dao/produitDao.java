@@ -15,4 +15,6 @@ public interface produitDao extends JpaRepository<Produit,Long> {
     List<Produit> fifi(double minprice);
     @Query("select p from Produit p where YEAR(p.date)= :year AND MONTH(p.date)= :month ")
     List<Produit> findProduitsByYearAndMonth(int year, int month);
+    @Query("select p.categorie,AVG(p.price) from Produit p group by p.categorie")
+    List<Object[]> findAveragePriceByCategorie();
 }
