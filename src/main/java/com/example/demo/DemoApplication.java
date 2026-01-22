@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -18,9 +19,9 @@ public class DemoApplication {
         // Récupérer le bean produitDao depuis le conteneur IoC
         produitDao prodao = ioc.getBean(produitDao.class);
         // save()
-        Produit p =new Produit("Rio",500.0,true);
-        Produit pp =new Produit("Youssef",5000.0,false);
-        Produit ppp =new Produit("hamza",50.0,true);
+        Produit p =new Produit("Rio",500.0,true, LocalDate.now());
+        Produit pp =new Produit("Youssef",5000.0,false,LocalDate.of(2023,5,20));
+        Produit ppp =new Produit("hamza",50.0,true,LocalDate.of(2026,1,15));
         prodao.save(p);
         prodao.save(pp);
         prodao.save(ppp);
@@ -80,6 +81,19 @@ public class DemoApplication {
         for(Produit pro : produitsByPriceGreaterThan){
             System.out.println(pro.toString());
         }
+
+        //Querry Methods
+        List<Produit> produitsQuery = prodao.fifi(100.0);
+        System.out.println("Produits avec prix > 100.0 (via Query):");
+        for(Produit pro : produitsQuery){
+            System.out.println(pro.toString());
+        }
+//Querry Methods
+        List<Produit> produitsQ = prodao.findProduitsByYearAndMonth(2026,1);
+        System.out.println("Produits ajoutés en Janvier 2026:");
+        for(Produit pro : produitsQ){
+            System.out.println(pro.toString());}
+
 
 
 

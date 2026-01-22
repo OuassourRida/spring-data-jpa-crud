@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity
 public class Produit {
     @Id
@@ -13,6 +16,7 @@ public class Produit {
     private String name;
     private Double price;
     private boolean disponible;
+    private LocalDate date;
     public boolean isDisponible() {
         return disponible;
     }
@@ -29,6 +33,21 @@ public class Produit {
         this.name = name;
         this.price = price;
         this.disponible = disponible;
+    }
+
+    public Produit(String name, Double price, boolean disponible, LocalDate date) {
+        this.name = name;
+        this.price = price;
+        this.disponible = disponible;
+        this.date = date;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Long getId() {
@@ -62,6 +81,7 @@ public class Produit {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", disponible=" + disponible +
+                ", date=" + date +
         '}';
     }
 }
