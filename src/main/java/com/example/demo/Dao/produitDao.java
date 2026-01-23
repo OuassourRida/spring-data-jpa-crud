@@ -17,4 +17,7 @@ public interface produitDao extends JpaRepository<Produit,Long> {
     List<Produit> findProduitsByYearAndMonth(int year, int month);
     @Query("select p.categorie,AVG(p.price) from Produit p group by p.categorie")
     List<Object[]> findAveragePriceByCategorie();
+    //QUERY without jpql just sql
+    @Query(value="select * from produit  where DATE_FORMAT(date,'%Y-%m')= :yearmonth  ", nativeQuery = true)
+    List<Produit> findProduitsByYearAndMonth2(String yearmonth);
 }

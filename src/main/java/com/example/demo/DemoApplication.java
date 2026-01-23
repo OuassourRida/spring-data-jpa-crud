@@ -107,6 +107,13 @@ public class DemoApplication {
             for(Object obj : row){
                 System.out.print(obj + " ");
             }
+
+            //QUERY without jpql just sql
+            List<Produit> prosqlym =prodao.findProduitsByYearAndMonth2("2026-01");
+            System.out.println("\nProduits ajoutés en Janvier 2026 (via SQL natif):");
+            for(Produit pro : prosqlym){
+                System.out.println(pro.toString());}
+
         }
 
 
