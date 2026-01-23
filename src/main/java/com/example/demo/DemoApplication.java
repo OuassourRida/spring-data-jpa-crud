@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.Dao.produitDao;
 import com.example.demo.Entity.Produit;
+import com.example.demo.Service.productService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -116,8 +117,10 @@ public class DemoApplication {
 
         }
 
-
-
+Produit pi =new Produit("Riozaki",5000.0,true, LocalDate.now(),"milk");
+        productService pros = ioc.getBean(productService.class);
+        int res = pros.save(pi);
+        System.out.println(res);
 
     }
 
