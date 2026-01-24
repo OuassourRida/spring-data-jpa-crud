@@ -121,6 +121,17 @@ Produit pi =new Produit("Riozaki",5000.0,true, LocalDate.now(),"milk");
         productService pros = ioc.getBean(productService.class);
         int res = pros.save(pi);
         System.out.println(res);
+        pros.findAllProduits();
+        System.out.println("res");
+        try {
+            pros.findByName("");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("res");
+
 
     }
 
