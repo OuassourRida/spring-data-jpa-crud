@@ -131,7 +131,14 @@ Produit pi =new Produit("Riozaki",5000.0,true, LocalDate.now(),"milk");
             System.out.println(e.getMessage());
         }
         System.out.println("res");
-
+        Produit newinfo = new Produit("UpdatedName", 999.0, false, LocalDate.now(), "UpdatedCategory");
+        try {
+            pros.updateProduit("41409bc1-dc8a-4960-bc81-b01710dcf27f", newinfo);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

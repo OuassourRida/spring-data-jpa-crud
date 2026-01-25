@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 public class Produit {
@@ -18,6 +19,20 @@ public class Produit {
     private boolean disponible;
     private LocalDate date;
     private String categorie;
+    private String ref;
+    public String getRef() {
+        return ref;
+    }
+
+    public Produit(String name, Double price, boolean disponible, LocalDate date, String categorie) {
+        this.name = name;
+        this.price = price;
+        this.disponible = disponible;
+        this.date = date;
+        this.categorie = categorie;
+        this.ref = UUID.randomUUID().toString();
+    }
+
     public boolean isDisponible() {
         return disponible;
     }
@@ -30,13 +45,13 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String name, Double price, boolean disponible, LocalDate date, String categorie) {
-        this.name = name;
-        this.price = price;
-        this.disponible = disponible;
-        this.date = date;
-        this.categorie = categorie;
-    }
+//    public Produit(String name, Double price, boolean disponible, LocalDate date, String categorie) {
+//        this.name = name;
+//        this.price = price;
+//        this.disponible = disponible;
+//        this.date = date;
+//        this.categorie = categorie;
+//    }
 
     public String getCategorie() {
         return categorie;
@@ -100,6 +115,7 @@ public class Produit {
                 ", disponible=" + disponible +
                 ", date=" + date +
                 ", categorie='" + categorie  +
+                ", refference='" + ref +
 
         '}';
     }

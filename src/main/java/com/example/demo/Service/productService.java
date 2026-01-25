@@ -51,6 +51,37 @@ public int  findByName (String name ){
 
 }
 }
+    public int updateProduit(String ref,Produit nvp) {
 
-    }
+        Produit prwithref = prodao.findByRef(ref);
+        if (ref == null || ref.isBlank()) {
+            throw new RuntimeException("La référence du produit ne peut pas être vide.");
+        }
+        if(nvp==null|| nvp.getName().isBlank()|| nvp.getPrice()==0){
+            throw new IllegalArgumentException("Les nouvelles informations du produit sont invalides.");
+        }
+
+        if (prwithref == null) {
+            throw new RuntimeException("Le produit avec la référence spécifiée n'existe pas.");
+        }
+else {
+            prwithref.setName(nvp.getName());
+            prwithref.setPrice(nvp.getPrice());
+            prwithref.setDisponible(nvp.isDisponible());
+            prwithref.setCategorie(nvp.getCategorie());
+            prwithref.setDate(nvp.getDate());
+            prodao.save(prwithref);
+            return 0;
+
+
+        }}}
+
+
+
+
+
+
+
+
+
 

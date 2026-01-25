@@ -10,6 +10,7 @@ public interface produitDao extends JpaRepository<Produit,Long> {
     List<Produit> findByName(String name);
     List<Produit> findByNameAndDisponible(String nam ,boolean disponible);
     List<Produit> findByPriceGreaterThan(Double price);
+    Produit findByRef(String ref);
     // Exemple de requête JPQL personnalisée
     @Query("select p from Produit p where p.price > :minprice ")
     List<Produit> fifi(double minprice);
