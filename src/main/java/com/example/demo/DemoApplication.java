@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @SpringBootApplication
@@ -139,6 +141,13 @@ Produit pi =new Produit("Riozaki",5000.0,true, LocalDate.now(),"milk");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
+        Map<String,Object> updates =new HashMap<>();
+        updates.put("price", 7500000.0);
+        updates.put("name","PartiallyUpdatedName");
+
+        int v=pros.partialupdateproduit("41409bc1-dc8a-4960-bc81-b01710dcf27f",updates);
+        System.out.println(v);
+
 
     }
 

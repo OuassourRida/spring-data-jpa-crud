@@ -5,6 +5,7 @@ import com.example.demo.Entity.Produit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class productService {
@@ -74,7 +75,43 @@ else {
             return 0;
 
 
-        }}}
+        }}
+public int partialupdateproduit(String ref, Map<String,Object> updates){
+if(ref==null || ref.isBlank()){
+    throw new RuntimeException("La référence du produit ne peut pas être vide.");}
+Produit prw = prodao.findByRef(ref);
+if(prw==null){
+    throw new RuntimeException("Le produit avec la référence spécifiée n'existe pas.");}
+if(updates ==null || updates.isEmpty()){
+    throw new IllegalArgumentException("Les mises à jour fournies sont invalides.");}
+if(updates.containsKey("name")){
+    String newName=(String) updates.get("name");
+    if(newName==null || newName.isBlank()){
+        throw new IllegalArgumentException("Le nouveau nom du produit est invalide.");}
+    prw.setName(newName);
+}
+if(updates.containsKey("price")){
+    prw.setPrice((Double)updates.get("price"));}
+if(updates.containsKey("disponible")){
+    prw.setDisponible((Boolean)updates.get("disponible"));}
+if(updates.containsKey("categorie")){
+    prw.setCategorie((String) updates.get("categorie"));}
+
+prodao.save(prw);
+return 1;
+
+
+
+
+}
+
+
+
+
+
+
+
+}
 
 
 
